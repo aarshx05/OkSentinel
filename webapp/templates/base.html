@@ -13,7 +13,13 @@
     <nav>
         <div class="nav-container">
             <a href="{{ url_for('dashboard') if 'user_id' in session else url_for('login') }}" class="brand">
-                <span>OkSentinel</span>
+                <img src="https://okynus.com/assets/Okynus_logo_png-DlXUS30F.png" alt="OkynusTech"
+                    style="height: 32px; margin-right: 12px; vertical-align: middle;">
+                <div style="display: inline-block; vertical-align: middle;">
+                    <span style="font-size: 1.1rem; font-weight: 600;">OkSentinel</span>
+                    <span style="font-size: 0.7rem; color: var(--text-secondary); display: block; margin-top: -2px;">by
+                        OkynusTech</span>
+                </div>
             </a>
 
             {% if 'user_id' in session %}
@@ -42,7 +48,7 @@
     </div>
 
     <footer class="footer">
-        <p>&copy; 2026 OkSentinel. Secure Data Sharing Platform.</p>
+        <p>&copy; 2026 OkSentinel by OkynusTech. Secure Data Sharing Platform.</p>
         <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">
             Zero-leak architecture • Progressive chunk streaming • End-to-end encryption
         </p>

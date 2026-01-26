@@ -465,8 +465,12 @@ def stream_file(package_id):
         
         # Trigger background prefetch
         try:
+            # Enhanced Logging for Chunk Access
+            print(f"\n[STREAM-LOG] 📡 Streaming Request: {cached['filename']}")
+            print(f"             └── Range: {range_header if range_header else 'Full File'}")
+            print(f"             └── Bytes: {start_byte}-{end_byte} (Chunk {start_chunk}-{end_chunk})")
+            
             # Get expiry time from asset metadata
-            # For now, use a default of 24 hours from now
             expiry_time = time.time() + (cached.get('expiry_hours', 24) * 3600)
             
             prefetch_manager.on_chunk_access(
@@ -481,8 +485,9 @@ def stream_file(package_id):
                 chunk_size=chunk_size,
                 expiry_time=expiry_time
             )
+            print(f"             └── ✅ Prefetch Triggered")
         except Exception as e:
-            print(f"[PREFETCH] Error triggering prefetch: {e}")
+            print(f"             └── ❌ Prefetch Error: {e}")
         
         # Trim to exact byte range
         chunk_start_offset = start_byte % chunk_size

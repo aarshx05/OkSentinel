@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="header">
-    <h1>👥 All Users</h1>
+    <h1>Users Directory</h1>
     <p>{{ users|length }} registered users</p>
 </div>
 
@@ -12,24 +12,28 @@
     <table>
         <thead>
             <tr>
-                <th>Username</th>
-                <th>User ID</th>
-                <th>Actions</th>
+                <th style="width: 25%;">Username</th>
+                <th style="width: 55%;">User ID</th>
+                <th style="width: 20%; text-align: right;">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for user in users %}
             <tr>
-                <td><strong>{{ user.username }}</strong></td>
-                <td><code>{{ user.user_id }}</code></td>
                 <td>
+                    <div style="font-weight: 600; color: var(--text-primary);">{{ user.username }}</div>
+                </td>
+                <td>
+                    <span class="code-block" style="font-size: 0.8rem; opacity: 0.8;">{{ user.user_id }}</span>
+                </td>
+                <td style="text-align: right;">
                     {% if user.user_id != session.user_id %}
-                    <a href="{{ url_for('send_file') }}?recipient={{ user.username }}" class="btn"
-                        style="padding: 8px 16px; font-size: 14px;">
-                        📤 Send File
+                    <a href="{{ url_for('send_file') }}?recipient={{ user.username }}" class="btn btn-sm"
+                        style="text-decoration: none;">
+                        Send File
                     </a>
                     {% else %}
-                    <span class="badge badge-info">You</span>
+                    <span class="badge badge-info">YOU</span>
                     {% endif %}
                 </td>
             </tr>

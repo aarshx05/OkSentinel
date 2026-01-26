@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="header">
-    <h1>📑 PDF Viewer</h1>
+    <h1>PDF Viewer</h1>
     <p>{{ filename }}</p>
 </div>
 
@@ -16,18 +16,14 @@
     </div>
 
     <div
-        style="width: 100%; height: 700px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-        <iframe src="{{ url_for('stream_file', package_id=package_id) }}" width="100%" height="100%"
-            style="border: none;"></iframe>
+        style="width: 100%; height: 80vh; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); background: #333;">
+        <iframe src="{{ url_for('stream_file', package_id=package_id) }}#toolbar=0&navpanes=0&scrollbar=0" width="100%"
+            height="100%" style="border: none; display: block;"></iframe>
     </div>
 
-    <div style="margin-top: 20px; display: flex; gap: 10px;">
+    <div style="margin-top: 20px; text-align: center;">
         <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
             ← Back to Dashboard
-        </a>
-        <a href="{{ url_for('download_file', package_id=package_id) }}" class="btn btn-danger"
-            onclick="return confirm('Download will save the file to your computer. Continue?');">
-            ⬇️ Download (Breaks Zero-Leak)
         </a>
     </div>
 </div>

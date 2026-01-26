@@ -4,23 +4,26 @@
 
 {% block content %}
 <div class="fade-in">
-    <h1 style="margin-bottom: var(--space-md);">Send Secure File</h1>
+    <div class="header" style="text-align: left; margin-bottom: 20px;">
+        <h1>Send Secure File</h1>
+        <p>Encrypt and share content with expired access.</p>
+    </div>
 
     <div class="card">
-        <div class="card-header">Upload & Encrypt</div>
+        <h2 style="font-size: 1.25rem; margin-bottom: 20px;">Upload & Encrypt</h2>
 
         <form method="POST" action="{{ url_for('send_file') }}" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="file">Select File (Max 500MB)</label>
-                <input type="file" id="file" name="file" class="form-control" required>
-                <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
+                <label for="file">Select File (Max 100MB)</label>
+                <input type="file" id="file" name="file" required>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 8px; margin-bottom: 0;">
                     File will be encrypted chunk-by-chunk with progressive streaming support
-                </small>
+                </p>
             </div>
 
             <div class="form-group">
                 <label for="recipient">Recipient</label>
-                <select id="recipient" name="recipient" class="form-control" required>
+                <select id="recipient" name="recipient" required>
                     <option value="">Select recipient...</option>
                     {% for user in recipients %}
                     <option value="{{ user.username }}">{{ user.username }}</option>
@@ -29,33 +32,32 @@
             </div>
 
             <div class="form-group">
-                <label for="expiry">Expiry Time (hours)</label>
-                <input type="number" id="expiry" name="expiry" class="form-control" value="24" min="1" max="168"
-                    required>
-                <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
-                    File will auto-expire after this duration
-                </small>
+                <label for="expiry">Access Duration</label>
+                <select id="expiry" name="expiry" required>
+                    <option value="0.0166667">1 Minute (Quick Test)</option>
+                    <option value="0.1666667">10 Minutes</option>
+                    <option value="1">1 Hour</option>
+                    <option value="24" selected>24 Hours</option>
+                    <option value="72">3 Days</option>
+                    <option value="168">7 Days</option>
+                </select>
             </div>
 
-            <div style="display: flex; gap: var(--space-sm); margin-top: var(--space-lg);">
-                <button type="submit" class="btn btn-success">
+            <div style="margin-top: 32px;">
+                <button type="submit" class="btn" style="width: 100%;">
                     Encrypt & Send
                 </button>
-                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
-                    Cancel
-                </a>
             </div>
         </form>
     </div>
 
     <div class="card">
-        <div class="card-header">Security Features</div>
-        <ul style="list-style: none; color: var(--text-secondary);">
-            <li style="margin-bottom: 0.5rem;">End-to-end encryption with RSA + AES-CTR</li>
-            <li style="margin-bottom: 0.5rem;">4MB chunk size for efficient streaming</li>
-            <li style="margin-bottom: 0.5rem;">Unique nonce per chunk</li>
-            <li style="margin-bottom: 0.5rem;">Manifest integrity protection</li>
-            <li style="margin-bottom: 0.5rem;">Zero-leak viewing (never saved to disk)</li>
+        <h2 style="font-size: 1.25rem; margin-bottom: 20px;">Security Features</h2>
+        <ul style="color: var(--text-secondary); line-height: 1.6; margin-left: 20px;">
+            <li>Enterprise-Grade End-to-End Encryption</li>
+            <li>Verified Identity Access Only</li>
+            <li>Strict Time-Bound Access Control</li>
+            <li>Zero File Footprint (Memory-Only Viewing)</li>
         </ul>
     </div>
 </div>

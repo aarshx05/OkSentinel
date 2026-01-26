@@ -1,5 +1,7 @@
 # OkSentinel
 
+**by OkynusTech**
+
 **Secure Internal Data Sharing Platform**
 
 OkSentinel is an enterprise-grade, zero-leak file sharing system designed for organizations that demand uncompromising security and performance.
@@ -95,4 +97,4 @@ For enterprise licensing, support, or partnership inquiries, please contact the 
 
 **Built with security, performance, and compliance in mind.**
 
-🛡️ OkSentinel - When data integrity matters.
+OkSentinel by OkynusTech - When data integrity matters.

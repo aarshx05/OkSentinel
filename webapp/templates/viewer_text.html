@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="header">
-    <h1>📄 Text Viewer</h1>
+    <h1>Text Viewer</h1>
     <p>{{ filename }}</p>
 </div>
 
@@ -18,13 +18,9 @@
     <pre
         style="background: #f8f9fa; padding: 20px; border-radius: 6px; overflow-x: auto; max-height: 600px; overflow-y: auto; line-height: 1.6;">{{ content }}</pre>
 
-    <div style="margin-top: 20px; display: flex; gap: 10px;">
+    <div style="margin-top: 24px; text-align: center;">
         <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
-            ← Back to Dashboard
-        </a>
-        <a href="{{ url_for('download_file', package_id=package_id) }}" class="btn btn-danger"
-            onclick="return confirm('Download will save the file to your computer. Continue?');">
-            ⬇️ Download (Breaks Zero-Leak)
+            Back
         </a>
     </div>
 </div>
