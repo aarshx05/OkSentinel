@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Users - OkShare{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h1>👥 All Users</h1>
+    <p>{{ users|length }} registered users</p>
+</div>
+
+<div class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>User ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td><strong>{{ user.username }}</strong></td>
+                <td><code>{{ user.user_id }}</code></td>
+                <td>
+                    {% if user.user_id != session.user_id %}
+                    <a href="{{ url_for('send_file') }}?recipient={{ user.username }}" class="btn"
+                        style="padding: 8px 16px; font-size: 14px;">
+                        📤 Send File
+                    </a>
+                    {% else %}
+                    <span class="badge badge-info">You</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+        ← Back to Dashboard
+    </a>
+</div>
+{% endblock %}

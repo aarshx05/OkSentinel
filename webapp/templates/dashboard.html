@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - OkSentinel{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <h1 style="margin-bottom: var(--space-md);">Welcome, {{ username }}</h1>
+
+    <div class="dashboard-grid">
+        <div class="stat-card">
+            <div class="stat-value">{{ packages|length }}</div>
+            <div class="stat-label">Received Files</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ users|length }}</div>
+            <div class="stat-label">Total Users</div>
+        </div>
+        <div class="stat-card" style="background: linear-gradient(135deg, #00d9ff 0%, #0099cc 100%);">
+            <div class="stat-value">Active</div>
+            <div class="stat-label" style="color: white;">Prefetch Status</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Received Files</div>
+
+        {% if packages %}
+        <ul class="file-list">
+            {% for file in packages %}
+            <li class="file-item">
+                <div style="display: flex; align-items: center;">
+                    <span class="file-icon">📄</span>
+                    <div>
+                        <div style="font-weight: 600;">{{ file.filename }}</div>
+                        <div style="font-size: 0.875rem; color: var(--text-secondary);">
+                            From: {{ file.sender_username }}
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ url_for('view_file', file_id=file.id) }}" class="btn btn-primary"
+                    style="padding: 0.5rem 1rem;">
+                    View
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p style="color: var(--text-secondary); text-align: center; padding: var(--space-lg);">
+            No files yet. Ask someone to send you a file!
+        </p>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <div class="card-header">Quick Actions</div>
+        <div style="display: flex; gap: var(--space-sm); margin-top: var(--space-sm);">
+            <a href="{{ url_for('send_file') }}" class="btn btn-success">
+                Send New File
+            </a>
+            <a href="{{ url_for('users') }}" class="btn btn-secondary">
+                View All Users
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OkSentinel - Secure Data Sharing{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="{{ url_for('dashboard') if 'user_id' in session else url_for('login') }}" class="brand">
+                <span>OkSentinel</span>
+            </a>
+
+            {% if 'user_id' in session %}
+            <ul class="nav-links">
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('send_file') }}">Send File</a></li>
+                <li><a href="{{ url_for('users') }}">Users</a></li>
+                <li><a href="{{ url_for('logout') }}" style="color: var(--danger);">Sign Out</a></li>
+            </ul>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category if category != 'error' else 'danger' }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 OkSentinel. Secure Data Sharing Platform.</p>
+        <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">
+            Zero-leak architecture • Progressive chunk streaming • End-to-end encryption
+        </p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}View: {{ filename }} - OkShare{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h1>🖼️ Image Viewer</h1>
+    <p>{{ filename }}</p>
+</div>
+
+<div class="card">
+    <div
+        style="margin-bottom: 20px; padding: 15px; background-color: #fff3cd; border-radius: 6px; border: 1px solid #ffeaa7;">
+        <strong>⚠️ Zero-Leak Mode:</strong> This image is decrypted and displayed in-browser only. It won't be saved to
+        disk unless you explicitly download it.
+    </div>
+
+    <div style="text-align: center;">
+        <img src="{{ url_for('stream_file', package_id=package_id) }}" alt="{{ filename }}"
+            style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    </div>
+
+    <div style="margin-top: 20px; display: flex; gap: 10px;">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+            ← Back to Dashboard
+        </a>
+        <a href="{{ url_for('download_file', package_id=package_id) }}" class="btn btn-danger"
+            onclick="return confirm('Download will save the file to your computer. Continue?');">
+            ⬇️ Download (Breaks Zero-Leak)
+        </a>
+    </div>
+</div>
+{% endblock %}

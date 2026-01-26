@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Download: {{ filename }} - OkShare{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h1>📦 Download File</h1>
+    <p>{{ filename }}</p>
+</div>
+
+<div class="card" style="max-width: 600px; margin: 0 auto; text-align: center;">
+    <div style="font-size: 80px; margin-bottom: 20px;">📄</div>
+
+    <h2 style="margin-bottom: 10px;">{{ filename }}</h2>
+    <p style="color: #666; margin-bottom: 30px;">Size: {{ "%.2f"|format(size / 1024 / 1024) }} MB</p>
+
+    <div
+        style="margin-bottom: 30px; padding: 15px; background-color: #d1ecf1; border-radius: 6px; border: 1px solid #bee5eb; text-align: left;">
+        <strong>ℹ️ About This File:</strong>
+        <p style="margin-top: 10px;">
+            This file type cannot be previewed in the browser. You can download it to view on your computer.
+        </p>
+    </div>
+
+    <div
+        style="margin-bottom: 30px; padding: 15px; background-color: #fff3cd; border-radius: 6px; border: 1px solid #ffeaa7; text-align: left;">
+        <strong>⚠️ Security Warning:</strong>
+        <p style="margin-top: 10px;">
+            Downloading will save the decrypted file to your computer, which breaks the zero-leak protection. Only
+            download if you trust your device's security.
+        </p>
+    </div>
+
+    <div style="display: flex; gap: 10px; justify-content: center;">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+            ← Back to Dashboard
+        </a>
+        <a href="{{ url_for('download_file', package_id=package_id) }}" class="btn btn-danger"
+            onclick="return confirm('This will save the file to your computer. Continue?');">
+            ⬇️ Download File
+        </a>
+    </div>
+</div>
+{% endblock %}

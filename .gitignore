@@ -1,0 +1,51 @@
+# Ignore data directory (contains user keys and packages)
+data/
+downloads/
+data_test_frontend/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Technical documentation (internal use only)
+TECHNICAL.md
+docs/internal/
+*.patent
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+stream_fix.py
+refined_logic.py

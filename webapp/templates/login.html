@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Login - OkSentinel{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-card fade-in">
+        <div class="login-header">
+            <h1>OkSentinel</h1>
+            <p>Secure Internal Data Sharing</p>
+        </div>
+
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username"
+                    required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="pin">PIN</label>
+                <input type="password" id="pin" name="pin" class="form-control" placeholder="Enter your PIN" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                Sign In / Create Account
+            </button>
+
+            <p
+                style="margin-top: var(--space-md); font-size: 0.875rem; color: var(--text-secondary); text-align: center;">
+                New users are automatically registered on first login
+            </p>
+        </form>
+
+        <div style="margin-top: var(--space-lg); padding-top: var(--space-lg); border-top: 1px solid var(--border);">
+            <h3 style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: var(--space-sm);">Security
+                Features:</h3>
+            <ul style="list-style: none; font-size: 0.875rem; color: var(--text-secondary);">
+                <li>End-to-end encryption</li>
+                <li>Zero-leak viewing</li>
+                <li>Progressive chunk streaming</li>
+                <li>Expiry enforcement</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
