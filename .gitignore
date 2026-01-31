@@ -2,6 +2,18 @@
 data/
 downloads/
 data_test_frontend/
+
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub/
+.flutter-plugins
+.flutter-plugins-dependencies
+oksentinel_app/build/
+*.iml
+.buildlog/
+.history
+migrate_working_dir/
 # Python
 __pycache__/
 *.py[cod]
